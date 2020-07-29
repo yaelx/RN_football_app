@@ -21,6 +21,7 @@ import ScaledText from "./ScaledText";
 import CloseModalButton from "./CloseModalButton";
 const popupButtonWidth = AppSizes.relativePopupButton.width;
 import { footballIcon, userIcon, arrowsIcon } from "../utils/iconGetters";
+import { dateUTCConverter } from "../utils/dateTimeConverter";
 
 export default class PopupModal extends Component {
   static propTypes = {
@@ -168,7 +169,12 @@ export default class PopupModal extends Component {
   );
 
   renderPlayer = ({ item, index }) => (
-    <View style={[AppStyles.top_center_col, { width: getRelativeWidth(100), ...AppStyles.elevatedSmall }]}>
+    <View
+      style={[
+        AppStyles.top_center_col,
+        { width: getRelativeWidth(100), ...AppStyles.elevatedSmall },
+      ]}
+    >
       <View style={AppStyles.top_center_col}>
         <View style={[AppStyles.left_center_row]}>{userIcon(26)}</View>
       </View>
@@ -194,9 +200,19 @@ export default class PopupModal extends Component {
   );
 
   renderMatch = ({ item, index }) => (
-    <View style={[AppStyles.top_center_col, { width: getRelativeWidth(120), paddingHorizontal: getRelativeWidth(2) }]}>
+    <View
+      style={[
+        AppStyles.top_center_col,
+        {
+          width: getRelativeWidth(120),
+          paddingHorizontal: getRelativeWidth(2),
+        },
+      ]}
+    >
       <View style={[AppStyles.center_align_row, { width: "100%" }]}>
-        {!!item.competition && <ScaledText text={item.competition} style={styles.playerNameText} />}
+        {!!item.competition && (
+          <ScaledText text={item.competition} style={styles.playerNameText} />
+        )}
       </View>
       <View
         style={[
@@ -204,23 +220,36 @@ export default class PopupModal extends Component {
           { width: "100%", paddingVertical: getRelativeHeight(2) },
         ]}
       >
-        {!!item.date && <ScaledText text={item.date} style={styles.playerPositionText} />}
+        {!!item.date && (
+          <ScaledText
+            text={dateUTCConverter(item.date)}
+            style={styles.playerPositionText}
+          />
+        )}
       </View>
 
       <View
         style={[
-          AppStyles.center_align_row, {marginTop: getRelativeHeight(8), width: "100%", paddingVertical: getRelativeHeight(2) },
+          AppStyles.center_align_row,
+          {
+            marginTop: getRelativeHeight(8),
+            width: "100%",
+            paddingVertical: getRelativeHeight(2),
+          },
         ]}
       >
         <View style={[AppStyles.center_align_row, { width: "100%" }]}>
-          {!!item.rivalTeam && <ScaledText text={item.rivalTeam} style={styles.playerPositionText} />}
+          {!!item.rivalTeam && (
+            <ScaledText
+              text={item.rivalTeam}
+              style={styles.playerPositionText}
+            />
+          )}
         </View>
       </View>
       <View style={[AppStyles.center_align_row]}>{arrowsIcon()}</View>
       <View
-        style={[
-          AppStyles.center_align_row,
-          { width: "100%", paddingVertical: getRelativeHeight(2) },
+        style={[styles.awayTeamFrame
         ]}
       >
         <ScaledText text={item.awayTeam} style={styles.playerPositionText} />
@@ -230,19 +259,12 @@ export default class PopupModal extends Component {
 
   renderPlayersList = (squad) =>
     squad.length && (
-      <View
-        style={[
-          {
-            ...AppStyles.top_center_col,
-            width: "100%",
-          },
-        ]}
-      >
+      <View style={[styles.playersFrame]}>
         <View style={[AppStyles.left_center_row]}>
           <ScaledText text={"Players"} style={[styles.playersHeaderText]} />
         </View>
 
-        <View style={[{ ...AppStyles.center_align_row, width: "100%" }]}>
+        <View style={[styles.playersListFrame]}>
           <FlatList
             keyExtractor={(item) => `${item.id}`}
             horizontal={true}
@@ -251,11 +273,7 @@ export default class PopupModal extends Component {
             showsHorizontalScrollIndicator={true}
             removeClippedSubviews={true}
             style={[AppStyles.listContainer]}
-            contentContainerStyle={{
-              ...AppStyles.left_center_row,
-              height: getRelativeHeight(80),
-              marginTop: getRelativeHeight(1),
-            }}
+            contentContainerStyle={styles.contentContainerStyle}
             onEndReachedThreshold={0.5}
             initialNumToRender={4}
           />
@@ -267,9 +285,8 @@ export default class PopupModal extends Component {
     matches.length && (
       <View
         style={[
+          styles.playersFrame,
           {
-            ...AppStyles.top_center_col,
-            width: "100%",
             marginTop: getRelativeHeight(10),
           },
         ]}
@@ -278,7 +295,7 @@ export default class PopupModal extends Component {
           <ScaledText text={"Matches"} style={[styles.playersHeaderText]} />
         </View>
 
-        <View style={[{ ...AppStyles.center_align_row, width: "100%" }]}>
+        <View style={[styles.playersListFrame]}>
           <FlatList
             keyExtractor={(item) => `${item.id}`}
             horizontal={true}
@@ -287,11 +304,7 @@ export default class PopupModal extends Component {
             showsHorizontalScrollIndicator={true}
             removeClippedSubviews={true}
             style={[AppStyles.listContainer]}
-            contentContainerStyle={{
-              ...AppStyles.left_center_row,
-              height: getRelativeHeight(130),
-              marginTop: getRelativeHeight(1),
-            }}
+            contentContainerStyle={styles.matcherContainer}
             onEndReachedThreshold={0.5}
             initialNumToRender={4}
           />
@@ -339,6 +352,28 @@ const buttonsVerticalFlex = 0.38;
 const contentFlex = 1 - titleFlex - buttonsFlex;
 
 const styles = StyleSheet.create({
+  awayTeamFrame: {
+    ...AppStyles.center_align_row,
+    width: "100%", paddingVertical: getRelativeHeight(2)
+  },
+  playersFrame: {
+    ...AppStyles.top_center_col,
+    width: "100%",
+  },
+  playersListFrame: {
+    ...AppStyles.center_align_row,
+    width: "100%",
+  },
+  contentContainerStyle: {
+    ...AppStyles.left_center_row,
+    height: getRelativeHeight(80),
+    marginTop: getRelativeHeight(1),
+  },
+  matcherContainer: {
+    ...AppStyles.left_center_row,
+    height: getRelativeHeight(130),
+    marginTop: getRelativeHeight(1),
+  },
   screenContainer: {
     flex: 1,
     position: "absolute",

@@ -47,67 +47,39 @@ export default class TeamCard extends Component {
     return false;
   }
 
-  renderImage = (url) => (
-    <Image
-      style={styles.teamLogoStyle}
-      source={{
-        uri: url,
-      }}
-      resizeMode={"cover"}
-    />
-  );
-
   renderDefaultLogo = () => (
-    <View
-      style={[
-        styles.teamLogoStyle,
-        { ...AppStyles.top_center_col, backgroundColor: colors.transparent },
-      ]}
-    >
-      {footballIcon(40)}
-    </View>
+    <View style={[styles.teamLogoStyle]}>{footballIcon(40)}</View>
   );
 
-  renderLogoImage = (url) =>
-    isValidUrl(url)
-      ? this.renderImage(this.props.team.crestUrl)
-      : this.renderDefaultLogo();
+  renderLogoImage = (url) => {
+    let logo = this.renderDefaultLogo();
+    if (isValidUrl(url)) {
+      return (
+        <Image
+        style={styles.teamLogoStyle}
+        source={{
+          uri: this.props.team.crestUrl,
+        }}
+        resizeMode={"cover"}
+      />
+      );
+    }
+    return logo;
+  };
 
   async showTeam() {
-    console.log(`show team: ${this.props.team.id} ${this.props.team.name}`);
-    //if (!this.state.team) {
-
     Promise.all([
       getTeam(this.props.team.id),
       getTeamMatches(this.props.team.id),
     ])
       .then((results) => {
-        if (results[0] && results[1]){
-          const fullTeam = {...results[0], matches: results[1]};
-          console.log(fullTeam);
-          this.props.showTeamDetails({ ...fullTeam });
-          this.setState({ team: fullTeam });
-        }
-
+        const fullTeam = { ...results[0], matches: results[1] };
+        this.props.showTeamDetails({ ...fullTeam });
+        this.setState({ team: fullTeam });
       })
       .catch((error) => {
-        // react on errors.
-        console.error(error);
         console.log(`showTeam error: ${error}`);
       });
-
-    /*
-    const fullTeam = await getTeam(this.props.team.id);
-    const matches = await getTeamMatches(this.props.team.id);
-    console.log(matches);
-
-    if (matches) {
-      console.log("got team and matches");
-      console.log(matches);
-      //this.props.showTeamDetails({ ...fullTeam });
-      //this.setState({ team: fullTeam });
-    }
-    */
   }
 
   renderHeader = () => (
@@ -119,26 +91,11 @@ export default class TeamCard extends Component {
       style={[styles.headerContainer]}
       onPress={this.showTeam}
     >
-      <View
-        style={[{ ...AppStyles.left_center_row, flex: 0.3, height: "100%" }]}
-      >
-        <View
-          style={[{ ...AppStyles.center_align_row, flex: 0.5, height: "100%" }]}
-        >
+      <View style={[styles.logoFrame]}>
           {this.renderLogoImage(this.props.team.crestUrl)}
-        </View>
       </View>
 
-      <View
-        style={[
-          {
-            ...AppStyles.left_center_row,
-            ...AppStyles.hideLongText,
-            flex: 0.7,
-            height: "100%",
-          },
-        ]}
-      >
+      <View style={[styles.teamNameFrame]}>
         <ScaledText style={[styles.teamNameText]} text={this.props.team.name} />
       </View>
     </TrackingTouchableOpacity>
@@ -155,6 +112,17 @@ export default class TeamCard extends Component {
 
 const logoDimens = getRelativeDimens({ height: 30, width: 30 });
 const styles = StyleSheet.create({
+  logoFrame: {
+    ...AppStyles.left_center_row,
+    flex: 0.3,
+    height: "100%",
+  },
+  teamNameFrame: {
+    ...AppStyles.left_center_row,
+    ...AppStyles.hideLongText,
+    flex: 0.7,
+    height: "100%",
+  },
   teamNameText: {
     ...AppFonts.h3,
     color: colors.darkGrey,
@@ -185,7 +153,6 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     ...AppStyles.center_align_row,
-    //paddingVertical: getRelativeHeight(2)
   },
   cardLayout: {
     ...AppStyles.center_col,
@@ -194,7 +161,7 @@ const styles = StyleSheet.create({
   },
   cardBody: {
     width: "95%",
-    ...AppStyles.top_center_col, // center_align_row
+    ...AppStyles.top_center_col,
     ...AppStyles.elevatedMed,
     backgroundColor: colors.white,
     borderRadius: 8,
@@ -209,5 +176,7 @@ const styles = StyleSheet.create({
   teamLogoStyle: {
     ...logoDimens,
     borderRadius: logoDimens.width * 0.5,
+    ...AppStyles.top_center_col,
+    backgroundColor: colors.transparent,
   },
 });

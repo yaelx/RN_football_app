@@ -110,15 +110,10 @@ export default class TeamsScreen extends Component {
   }
 
   showTeamModal = team => {
-    console.log("showTeamModal");
-    //console.log(team);
     this.setState({ team });
   };
 
-  renderTeamDetails = () => {
-    console.log(!!this.state.team);
-    console.log("renderTeamDetails");
-    return(
+  renderTeamDetails = () => (
     <PopupModal
     isVisible={!!this.state.team}
     title={this.state.team.name}
@@ -129,21 +124,20 @@ export default class TeamsScreen extends Component {
     onClose={() => this.showTeamModal(undefined)}
   />
   );
-    }
 
   renderTeam = ({ item, index }) => {
     return(<TeamCard key={item.id} team={item}  showTeamDetails={this.showTeamModal}/>);
     }
 
   renderHeader = () => (
-    <View style={[{ ...AppStyles.center_align_row, width: "100%", height: AppSizes.headerHeight, backgroundColor: colors.veryLightGrey }]}>
-      <View style={[{ ...AppStyles.center_align_row, width: "50%" }]}>
+    <View style={[styles.headerFrame]}>
+      <View style={[styles.titleFrame]}>
         <ScaledText
           text={TeamsScreen.screenHeader}
           style={styles.screenHeader}
         />
       </View>
-      <View style={[{ ...AppStyles.center_align_row, width: "50%" }]}>
+      <View style={[styles.buttonFrame]}>
         <Button
           title="Reload"
           color={colors.red}
@@ -159,7 +153,7 @@ export default class TeamsScreen extends Component {
       data={this.state.teams}
       renderItem={(item) => this.renderTeam(item)}
       ListEmptyComponent={() => (
-        <View style={{ ...AppStyles.center_align_col, width: "100%", flex: 1 }}>
+        <View style={styles.emptyComponentFrame}>
           {loadingMessage("Loading Teams", true)}
         </View>
       )}
@@ -185,6 +179,15 @@ export default class TeamsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  headerFrame: {
+    ...AppStyles.center_align_row, width: "100%", height: AppSizes.headerHeight, backgroundColor: colors.veryLightGrey
+  },
+  titleFrame: {
+    ...AppStyles.center_align_row, width: "50%"
+  },
+  buttonFrame: {
+    ...AppStyles.center_align_row, width: "50%"
+  },
   container: {
     flex: 1,
     backgroundColor: colors.white,
@@ -201,4 +204,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
     letterSpacing: 0.07,
   },
+  emptyComponentFrame: {
+    ...AppStyles.center_align_col, width: "100%", flex: 1
+  }
 });
