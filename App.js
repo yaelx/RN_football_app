@@ -2,15 +2,19 @@ import { AppLoading, SplashScreen, Updates } from 'expo';
 import { Asset } from 'expo-asset';
 import Constants from 'expo-constants';
 import React from 'react';
-import { Animated, Button, StyleSheet, Text, View } from 'react-native';
+import { Animated, Button, StyleSheet, Text, View, StatusBar } from 'react-native';
+import TeamsScreen from "./containers/TeamsScreen";
+import { colors } from './theme';
+
 
 // Instruct SplashScreen not to hide yet, we want to do this manually
 SplashScreen.preventAutoHide();
 
 export default function App() {
   return (
-    <AnimatedAppLoader image={{ uri: Constants.manifest.splash.image }}>
-      <MainScreen />
+    <AnimatedAppLoader image={{ uri: "https://images.pexels.com/photos/159515/football-american-football-runner-player-159515.jpeg" }}>
+      <StatusBar animated backgroundColor={colors.darkGrey}/>
+      <TeamsScreen />
     </AnimatedAppLoader>
   );
 }
@@ -106,25 +110,3 @@ function AnimatedSplashScreen({ children, image }) {
   );
 }
 
-function MainScreen() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: 'plum',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <Text
-        style={{
-          color: 'black',
-          fontSize: 30,
-          marginBottom: 15,
-          fontWeight: 'bold',
-        }}>
-        Pretty Cool!
-      </Text>
-      <Button title="Run Again" onPress={() => Updates.reload()} />
-    </View>
-  );
-}
