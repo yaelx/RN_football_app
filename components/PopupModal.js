@@ -20,6 +20,7 @@ import ScaledText from "./ScaledText";
 import CloseModalButton from "./CloseModalButton";
 const popupButtonWidth = AppSizes.relativePopupButton.width;
 import { footballIcon, userIcon, arrowsIcon } from "../utils/iconGetters";
+import { renderEmptyComponent } from "../utils/utils";
 import { dateUTCConverter } from "../utils/dateTimeConverter";
 
 export default class PopupModal extends Component {
@@ -199,26 +200,13 @@ export default class PopupModal extends Component {
   );
 
   renderMatch = ({ item, index }) => (
-    <View
-      style={[
-        AppStyles.top_center_col,
-        {
-          width: getRelativeWidth(120),
-          paddingHorizontal: getRelativeWidth(2),
-        },
-      ]}
-    >
+    <View style={[styles.matchFrame]}>
       <View style={[AppStyles.center_align_row, { width: "100%" }]}>
         {!!item.competition && (
           <ScaledText text={item.competition} style={styles.playerNameText} />
         )}
       </View>
-      <View
-        style={[
-          AppStyles.center_align_row,
-          { width: "100%", paddingVertical: getRelativeHeight(2) },
-        ]}
-      >
+      <View style={[styles.matchTimeFrame]}>
         {!!item.date && (
           <ScaledText
             text={dateUTCConverter(item.date)}
@@ -227,17 +215,8 @@ export default class PopupModal extends Component {
         )}
       </View>
 
-      <View
-        style={[
-          AppStyles.center_align_row,
-          {
-            marginTop: getRelativeHeight(8),
-            width: "100%",
-            paddingVertical: getRelativeHeight(2),
-          },
-        ]}
-      >
-        <View style={[AppStyles.center_align_row, { width: "100%" }]}>
+      <View style={[styles.teamsMatchFrame]}>
+        <View style={[styles.TeamFrame]}>
           {!!item.rivalTeam && (
             <ScaledText
               text={item.rivalTeam}
@@ -247,11 +226,10 @@ export default class PopupModal extends Component {
         </View>
       </View>
       <View style={[AppStyles.center_align_row]}>{arrowsIcon()}</View>
-      <View
-        style={[styles.awayTeamFrame
-        ]}
-      >
-        <ScaledText text={item.awayTeam} style={styles.playerPositionText} />
+      <View style={[styles.TeamFrame]}>
+        {!!item.awayTeam && (
+          <ScaledText text={item.awayTeam} style={styles.playerPositionText} />
+        )}
       </View>
     </View>
   );
@@ -275,42 +253,36 @@ export default class PopupModal extends Component {
             contentContainerStyle={styles.contentContainerStyle}
             onEndReachedThreshold={0.5}
             initialNumToRender={4}
+            ListEmptyComponent={renderEmptyComponent("No players for team")}
           />
         </View>
       </View>
     );
 
-  renderMatchesList = (matches) =>
-    matches.length && (
-      <View
-        style={[
-          styles.playersFrame,
-          {
-            marginTop: getRelativeHeight(10),
-          },
-        ]}
-      >
-        <View style={[AppStyles.left_center_row]}>
-          <ScaledText text={"Matches"} style={[styles.playersHeaderText]} />
-        </View>
-
-        <View style={[styles.playersListFrame]}>
-          <FlatList
-            keyExtractor={(item) => `${item.id}`}
-            horizontal={true}
-            data={matches}
-            renderItem={(item) => this.renderMatch(item)}
-            showsHorizontalScrollIndicator={true}
-            renderEMO
-            removeClippedSubviews={true}
-            style={[AppStyles.listContainer]}
-            contentContainerStyle={styles.matcherContainer}
-            onEndReachedThreshold={0.5}
-            initialNumToRender={4}
-          />
-        </View>
+  renderMatchesList = (matches) => (
+    <View style={[styles.matchesFrame]}>
+      <View style={[AppStyles.left_center_row]}>
+        <ScaledText text={"Matches"} style={[styles.playersHeaderText]} />
       </View>
-    );
+
+      <View style={[styles.playersListFrame]}>
+        <FlatList
+          keyExtractor={(item) => `${item.id}`}
+          horizontal={true}
+          data={matches}
+          renderItem={(item) => this.renderMatch(item)}
+          showsHorizontalScrollIndicator={true}
+          renderEMO
+          removeClippedSubviews={true}
+          style={[AppStyles.listContainer]}
+          contentContainerStyle={styles.matcherContainer}
+          onEndReachedThreshold={0.5}
+          initialNumToRender={4}
+          ListEmptyComponent={renderEmptyComponent("No matches for team")}
+        />
+      </View>
+    </View>
+  );
 
   renderTeam = (team) => (
     <View
@@ -352,13 +324,30 @@ const buttonsVerticalFlex = 0.38;
 const contentFlex = 1 - titleFlex - buttonsFlex;
 
 const styles = StyleSheet.create({
-  awayTeamFrame: {
+  matchFrame: {
+    ...AppStyles.top_center_col,
+    width: getRelativeWidth(120),
+    paddingHorizontal: getRelativeWidth(2),
+  },
+  matchTimeFrame: {
     ...AppStyles.center_align_row,
-    width: "100%", paddingVertical: getRelativeHeight(2)
+    width: "100%",
+    paddingVertical: getRelativeHeight(2),
+  },
+  teamFrame: {
+    ...AppStyles.center_align_row,
+    width: "100%",
+    paddingVertical: getRelativeHeight(2),
+  },
+  matchesFrame: {
+    ...AppStyles.top_center_col,
+    width: "100%",
+    marginTop: getRelativeHeight(10),
   },
   playersFrame: {
     ...AppStyles.top_center_col,
     width: "100%",
+    marginTop: getRelativeHeight(10)
   },
   playersListFrame: {
     ...AppStyles.center_align_row,
@@ -490,5 +479,11 @@ const styles = StyleSheet.create({
     letterSpacing: 0.08,
     color: colors.red,
     fontWeight: "bold",
+  },
+  teamsMatchFrame: {
+    ...AppStyles.center_align_row,
+    marginTop: getRelativeHeight(8),
+    width: "100%",
+    paddingVertical: getRelativeHeight(2),
   },
 });

@@ -148,6 +148,10 @@ export async function getTeamMatches(team_id) {
       })
       .catch((error) => {
         console.log(`getTeamMatches for team: ${team_id} got error: ${error}`);
+        if (error.includes("429")){
+          // 10 requests/minute in the free plan
+          console.log(`Too Many Requests: You exceeded your API request quota.`);
+        }
         return [];
       });
 }

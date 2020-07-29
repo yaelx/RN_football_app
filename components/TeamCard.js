@@ -73,9 +73,11 @@ export default class TeamCard extends Component {
       getTeamMatches(this.props.team.id),
     ])
       .then((results) => {
-        const fullTeam = { ...results[0], matches: results[1] };
-        this.props.showTeamDetails({ ...fullTeam });
-        this.setState({ team: fullTeam });
+        if (results[0] && results[1]){
+          const fullTeam = { ...results[0], matches: results[1] };
+          this.props.showTeamDetails({ ...fullTeam });
+          this.setState({ team: fullTeam });
+        }
       })
       .catch((error) => {
         console.log(`showTeam error: ${error}`);
