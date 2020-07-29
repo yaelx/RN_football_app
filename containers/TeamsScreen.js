@@ -1,34 +1,22 @@
 import React, { Component } from "react";
-import { AppLoading, SplashScreen, Updates } from "expo";
+import { Updates } from "expo";
 import {
-  Image,
   StyleSheet,
   View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  ImageBackground,
-  Platform,
   Button,
   FlatList,
-  Modal,
 } from "react-native";
-import axios from "react-native-axios";
 import {
   AppFonts,
   AppStyles,
   AppSizes,
   getRelativeWidth,
   getRelativeHeight,
-  lightTheme,
   colors,
 } from "../theme/index";
 import {
-  getCompetitions,
   getCompetitionTeam,
-  getTeamRequests,
-  loadingMessage,
-  FOOTBALL_KEY,
+  renderEmptyComponent,
 } from "../utils/utils";
 import ScaledText from "../components/ScaledText";
 import TeamCard from "../components/TeamCard";
@@ -152,11 +140,7 @@ export default class TeamsScreen extends Component {
       keyExtractor={(item) => `${item.id}`}
       data={this.state.teams}
       renderItem={(item) => this.renderTeam(item)}
-      ListEmptyComponent={() => (
-        <View style={styles.emptyComponentFrame}>
-          {loadingMessage("Loading Teams", true)}
-        </View>
-      )}
+      ListEmptyComponent={renderEmptyComponent("Loading teams")}
       style={[AppStyles.listContainer]}
       contentContainerStyle={{
         ...AppStyles.top_center_col,
@@ -204,7 +188,4 @@ const styles = StyleSheet.create({
     textAlign: "left",
     letterSpacing: 0.07,
   },
-  emptyComponentFrame: {
-    ...AppStyles.center_align_col, width: "100%", flex: 1
-  }
 });

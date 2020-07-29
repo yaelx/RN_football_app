@@ -30,6 +30,13 @@ export function loadingMessage(msg, hasSpinner = true) {
   );
 }
 
+export function renderEmptyComponent(msg) {
+  <View style={styles.emptyComponentFrame}>
+  {loadingMessage(msg, true)}
+</View>
+}
+
+
 
 export async function getTeam(id) {
 return axios.get(`http://api.football-data.org/v2/teams/${id}`, {
@@ -179,5 +186,8 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: lightTheme.borderColor,
     marginVertical: getRelativeHeight(5)
+  },
+  emptyComponentFrame: {
+    ...AppStyles.center_align_col, width: "100%", flex: 1
   }
 });

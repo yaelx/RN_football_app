@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-//import { Overlay } from "react-native-popup-dialog";
 import {
   Modal,
   StyleSheet,
@@ -27,7 +26,7 @@ export default class PopupModal extends Component {
   static propTypes = {
     isVisible: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
-    title: PropTypes.string, // dialog title string
+    title: PropTypes.string,
     innerText: PropTypes.string,
     buttons: PropTypes.array,
     buttonsVertical: PropTypes.bool,
@@ -302,6 +301,7 @@ export default class PopupModal extends Component {
             data={matches}
             renderItem={(item) => this.renderMatch(item)}
             showsHorizontalScrollIndicator={true}
+            renderEMO
             removeClippedSubviews={true}
             style={[AppStyles.listContainer]}
             contentContainerStyle={styles.matcherContainer}
