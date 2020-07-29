@@ -1,0 +1,422 @@
+[
+  {
+    "id": 269362,
+    "competition": {
+      "id": 2016,
+      "name": "Championship",
+      "area": {
+        "name": "England",
+        "code": "ENG",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+      }
+    },
+    "season": {
+      "id": 503,
+      "startDate": "2019-08-02",
+      "endDate": "2020-07-22",
+      "currentMatchday": 46,
+      "winner": null
+    },
+    "utcDate": "2020-03-08T15:00:00Z",
+    "status": "FINISHED",
+    "matchday": 37,
+    "stage": "REGULAR_SEASON",
+    "group": "Regular Season",
+    "lastUpdated": "2020-03-08T23:59:40Z",
+    "odds": { "msg": "Activate Odds-Package in User-Panel to retrieve odds." },
+    "score": {
+      "winner": "HOME_TEAM",
+      "duration": "REGULAR",
+      "fullTime": { "homeTeam": 3, "awayTeam": 0 },
+      "halfTime": { "homeTeam": 2, "awayTeam": 0 },
+      "extraTime": { "homeTeam": null, "awayTeam": null },
+      "penalties": { "homeTeam": null, "awayTeam": null }
+    },
+    "homeTeam": { "id": 342, "name": "Derby County FC" },
+    "awayTeam": { "id": 59, "name": "Blackburn Rovers FC" },
+    "referees": [
+      { "id": 11327, "name": "John Brooks", "nationality": null },
+      { "id": 14710, "name": "Richard Wild", "nationality": null },
+      { "id": 11289, "name": "Steve Meredith", "nationality": null },
+      { "id": 11318, "name": "Mark Jones", "nationality": null }
+    ]
+  },
+  {
+    "id": 269369,
+    "competition": {
+      "id": 2016,
+      "name": "Championship",
+      "area": {
+        "name": "England",
+        "code": "ENG",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+      }
+    },
+    "season": {
+      "id": 503,
+      "startDate": "2019-08-02",
+      "endDate": "2020-07-22",
+      "currentMatchday": 46,
+      "winner": null
+    },
+    "utcDate": "2020-06-20T14:00:00Z",
+    "status": "FINISHED",
+    "matchday": 38,
+    "stage": "REGULAR_SEASON",
+    "group": "Regular Season",
+    "lastUpdated": "2020-06-21T00:10:08Z",
+    "odds": { "msg": "Activate Odds-Package in User-Panel to retrieve odds." },
+    "score": {
+      "winner": "HOME_TEAM",
+      "duration": "REGULAR",
+      "fullTime": { "homeTeam": 3, "awayTeam": 1 },
+      "halfTime": { "homeTeam": 1, "awayTeam": 1 },
+      "extraTime": { "homeTeam": null, "awayTeam": null },
+      "penalties": { "homeTeam": null, "awayTeam": null }
+    },
+    "homeTeam": { "id": 59, "name": "Blackburn Rovers FC" },
+    "awayTeam": { "id": 387, "name": "Bristol City FC" },
+    "referees": [
+      { "id": 11287, "name": "Oliver Langford", "nationality": null },
+      { "id": 11475, "name": "Rob Merchant", "nationality": null },
+      { "id": 11341, "name": "Jonathan Hunt", "nationality": null },
+      { "id": 11472, "name": "Jeremy Simpson", "nationality": null }
+    ]
+  },
+  {
+    "id": 269389,
+    "competition": {
+      "id": 2016,
+      "name": "Championship",
+      "area": {
+        "name": "England",
+        "code": "ENG",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+      }
+    },
+    "season": {
+      "id": 503,
+      "startDate": "2019-08-02",
+      "endDate": "2020-07-22",
+      "currentMatchday": 46,
+      "winner": null
+    },
+    "utcDate": "2020-06-27T14:00:00Z",
+    "status": "FINISHED",
+    "matchday": 39,
+    "stage": "REGULAR_SEASON",
+    "group": "Regular Season",
+    "lastUpdated": "2020-06-27T21:41:19Z",
+    "odds": { "msg": "Activate Odds-Package in User-Panel to retrieve odds." },
+    "score": {
+      "winner": "HOME_TEAM",
+      "duration": "REGULAR",
+      "fullTime": { "homeTeam": 2, "awayTeam": 0 },
+      "halfTime": { "homeTeam": 0, "awayTeam": 0 },
+      "extraTime": { "homeTeam": null, "awayTeam": null },
+      "penalties": { "homeTeam": null, "awayTeam": null }
+    },
+    "homeTeam": { "id": 75, "name": "Wigan Athletic FC" },
+    "awayTeam": { "id": 59, "name": "Blackburn Rovers FC" },
+    "referees": [
+      { "id": 11469, "name": "Darren England", "nationality": null },
+      { "id": 11404, "name": "James Mainwaring", "nationality": null },
+      { "id": 11403, "name": "Nick Greenhalgh", "nationality": null },
+      { "id": 11290, "name": "Steve Martin", "nationality": null }
+    ]
+  },
+  {
+    "id": 269402,
+    "competition": {
+      "id": 2016,
+      "name": "Championship",
+      "area": {
+        "name": "England",
+        "code": "ENG",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+      }
+    },
+    "season": {
+      "id": 503,
+      "startDate": "2019-08-02",
+      "endDate": "2020-07-22",
+      "currentMatchday": 46,
+      "winner": null
+    },
+    "utcDate": "2020-06-30T17:00:00Z",
+    "status": "FINISHED",
+    "matchday": 40,
+    "stage": "REGULAR_SEASON",
+    "group": "Regular Season",
+    "lastUpdated": "2020-06-30T23:35:38Z",
+    "odds": { "msg": "Activate Odds-Package in User-Panel to retrieve odds." },
+    "score": {
+      "winner": "HOME_TEAM",
+      "duration": "REGULAR",
+      "fullTime": { "homeTeam": 2, "awayTeam": 0 },
+      "halfTime": { "homeTeam": 0, "awayTeam": 0 },
+      "extraTime": { "homeTeam": null, "awayTeam": null },
+      "penalties": { "homeTeam": null, "awayTeam": null }
+    },
+    "homeTeam": { "id": 357, "name": "Barnsley FC" },
+    "awayTeam": { "id": 59, "name": "Blackburn Rovers FC" },
+    "referees": [
+      { "id": 11378, "name": "Tony Harrington", "nationality": null },
+      { "id": 11333, "name": "Akil Howson", "nationality": null },
+      { "id": 11470, "name": "James Wilson", "nationality": null },
+      { "id": 9381, "name": "Ross Joyce", "nationality": null }
+    ]
+  },
+  {
+    "id": 269405,
+    "competition": {
+      "id": 2016,
+      "name": "Championship",
+      "area": {
+        "name": "England",
+        "code": "ENG",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+      }
+    },
+    "season": {
+      "id": 503,
+      "startDate": "2019-08-02",
+      "endDate": "2020-07-22",
+      "currentMatchday": 46,
+      "winner": null
+    },
+    "utcDate": "2020-07-04T14:00:00Z",
+    "status": "FINISHED",
+    "matchday": 41,
+    "stage": "REGULAR_SEASON",
+    "group": "Regular Season",
+    "lastUpdated": "2020-07-04T23:59:22Z",
+    "odds": { "msg": "Activate Odds-Package in User-Panel to retrieve odds." },
+    "score": {
+      "winner": "AWAY_TEAM",
+      "duration": "REGULAR",
+      "fullTime": { "homeTeam": 1, "awayTeam": 3 },
+      "halfTime": { "homeTeam": 0, "awayTeam": 2 },
+      "extraTime": { "homeTeam": null, "awayTeam": null },
+      "penalties": { "homeTeam": null, "awayTeam": null }
+    },
+    "homeTeam": { "id": 59, "name": "Blackburn Rovers FC" },
+    "awayTeam": { "id": 341, "name": "Leeds United AFC" },
+    "referees": [
+      { "id": 11446, "name": "Robert Jones", "nationality": null },
+      { "id": 11379, "name": "Shaun Hudson", "nationality": null },
+      { "id": 11333, "name": "Akil Howson", "nationality": null },
+      { "id": 11542, "name": "Graham Salisbury", "nationality": null }
+    ]
+  },
+  {
+    "id": 269423,
+    "competition": {
+      "id": 2016,
+      "name": "Championship",
+      "area": {
+        "name": "England",
+        "code": "ENG",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+      }
+    },
+    "season": {
+      "id": 503,
+      "startDate": "2019-08-02",
+      "endDate": "2020-07-22",
+      "currentMatchday": 46,
+      "winner": null
+    },
+    "utcDate": "2020-07-07T18:45:00Z",
+    "status": "FINISHED",
+    "matchday": 42,
+    "stage": "REGULAR_SEASON",
+    "group": "Regular Season",
+    "lastUpdated": "2020-07-07T23:57:21Z",
+    "odds": { "msg": "Activate Odds-Package in User-Panel to retrieve odds." },
+    "score": {
+      "winner": "AWAY_TEAM",
+      "duration": "REGULAR",
+      "fullTime": { "homeTeam": 2, "awayTeam": 3 },
+      "halfTime": { "homeTeam": 2, "awayTeam": 1 },
+      "extraTime": { "homeTeam": null, "awayTeam": null },
+      "penalties": { "homeTeam": null, "awayTeam": null }
+    },
+    "homeTeam": { "id": 715, "name": "Cardiff City FC" },
+    "awayTeam": { "id": 59, "name": "Blackburn Rovers FC" },
+    "referees": [
+      { "id": 11626, "name": "Matt Donohue", "nationality": null },
+      { "id": 11475, "name": "Rob Merchant", "nationality": null },
+      { "id": 11461, "name": "Tim Wood", "nationality": null },
+      { "id": 11390, "name": "Brett Huxtable", "nationality": null }
+    ]
+  },
+  {
+    "id": 269429,
+    "competition": {
+      "id": 2016,
+      "name": "Championship",
+      "area": {
+        "name": "England",
+        "code": "ENG",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+      }
+    },
+    "season": {
+      "id": 503,
+      "startDate": "2019-08-02",
+      "endDate": "2020-07-22",
+      "currentMatchday": 46,
+      "winner": null
+    },
+    "utcDate": "2020-07-11T14:00:00Z",
+    "status": "FINISHED",
+    "matchday": 43,
+    "stage": "REGULAR_SEASON",
+    "group": "Regular Season",
+    "lastUpdated": "2020-07-11T23:59:42Z",
+    "odds": { "msg": "Activate Odds-Package in User-Panel to retrieve odds." },
+    "score": {
+      "winner": "DRAW",
+      "duration": "REGULAR",
+      "fullTime": { "homeTeam": 1, "awayTeam": 1 },
+      "halfTime": { "homeTeam": 0, "awayTeam": 1 },
+      "extraTime": { "homeTeam": null, "awayTeam": null },
+      "penalties": { "homeTeam": null, "awayTeam": null }
+    },
+    "homeTeam": { "id": 59, "name": "Blackburn Rovers FC" },
+    "awayTeam": { "id": 74, "name": "West Bromwich Albion FC" },
+    "referees": [
+      { "id": 23568, "name": "Jarred Gillett", "nationality": null },
+      { "id": 11289, "name": "Steve Meredith", "nationality": null },
+      { "id": 11318, "name": "Mark Jones", "nationality": null },
+      { "id": 11327, "name": "John Brooks", "nationality": null }
+    ]
+  },
+  {
+    "id": 269451,
+    "competition": {
+      "id": 2016,
+      "name": "Championship",
+      "area": {
+        "name": "England",
+        "code": "ENG",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+      }
+    },
+    "season": {
+      "id": 503,
+      "startDate": "2019-08-02",
+      "endDate": "2020-07-22",
+      "currentMatchday": 46,
+      "winner": null
+    },
+    "utcDate": "2020-07-14T18:45:00Z",
+    "status": "FINISHED",
+    "matchday": 44,
+    "stage": "REGULAR_SEASON",
+    "group": "Regular Season",
+    "lastUpdated": "2020-07-15T03:45:05Z",
+    "odds": { "msg": "Activate Odds-Package in User-Panel to retrieve odds." },
+    "score": {
+      "winner": "HOME_TEAM",
+      "duration": "REGULAR",
+      "fullTime": { "homeTeam": 1, "awayTeam": 0 },
+      "halfTime": { "homeTeam": 1, "awayTeam": 0 },
+      "extraTime": { "homeTeam": null, "awayTeam": null },
+      "penalties": { "homeTeam": null, "awayTeam": null }
+    },
+    "homeTeam": { "id": 384, "name": "Millwall FC" },
+    "awayTeam": { "id": 59, "name": "Blackburn Rovers FC" },
+    "referees": [
+      { "id": 11327, "name": "John Brooks", "nationality": null },
+      { "id": 11460, "name": "Geoff Russell", "nationality": null },
+      { "id": 11457, "name": "Lee Venamore", "nationality": null },
+      { "id": 11536, "name": "Craig Hicks", "nationality": null }
+    ]
+  },
+  {
+    "id": 269453,
+    "competition": {
+      "id": 2016,
+      "name": "Championship",
+      "area": {
+        "name": "England",
+        "code": "ENG",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+      }
+    },
+    "season": {
+      "id": 503,
+      "startDate": "2019-08-02",
+      "endDate": "2020-07-22",
+      "currentMatchday": 46,
+      "winner": null
+    },
+    "utcDate": "2020-07-18T14:00:00Z",
+    "status": "FINISHED",
+    "matchday": 45,
+    "stage": "REGULAR_SEASON",
+    "group": "Regular Season",
+    "lastUpdated": "2020-07-18T23:59:34Z",
+    "odds": { "msg": "Activate Odds-Package in User-Panel to retrieve odds." },
+    "score": {
+      "winner": "HOME_TEAM",
+      "duration": "REGULAR",
+      "fullTime": { "homeTeam": 4, "awayTeam": 3 },
+      "halfTime": { "homeTeam": 2, "awayTeam": 1 },
+      "extraTime": { "homeTeam": null, "awayTeam": null },
+      "penalties": { "homeTeam": null, "awayTeam": null }
+    },
+    "homeTeam": { "id": 59, "name": "Blackburn Rovers FC" },
+    "awayTeam": { "id": 355, "name": "Reading FC" },
+    "referees": [
+      { "id": 11396, "name": "Tim Robinson", "nationality": null },
+      { "id": 11470, "name": "James Wilson", "nationality": null },
+      { "id": 11341, "name": "Jonathan Hunt", "nationality": null },
+      { "id": 11618, "name": "Chris Sarginson", "nationality": null }
+    ]
+  },
+  {
+    "id": 269474,
+    "competition": {
+      "id": 2016,
+      "name": "Championship",
+      "area": {
+        "name": "England",
+        "code": "ENG",
+        "ensignUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
+      }
+    },
+    "season": {
+      "id": 503,
+      "startDate": "2019-08-02",
+      "endDate": "2020-07-22",
+      "currentMatchday": 46,
+      "winner": null
+    },
+    "utcDate": "2020-07-22T18:30:00Z",
+    "status": "FINISHED",
+    "matchday": 46,
+    "stage": "REGULAR_SEASON",
+    "group": "Regular Season",
+    "lastUpdated": "2020-07-23T01:50:01Z",
+    "odds": { "msg": "Activate Odds-Package in User-Panel to retrieve odds." },
+    "score": {
+      "winner": "HOME_TEAM",
+      "duration": "REGULAR",
+      "fullTime": { "homeTeam": 3, "awayTeam": 2 },
+      "halfTime": { "homeTeam": 2, "awayTeam": 1 },
+      "extraTime": { "homeTeam": null, "awayTeam": null },
+      "penalties": { "homeTeam": null, "awayTeam": null }
+    },
+    "homeTeam": { "id": 389, "name": "Luton Town FC" },
+    "awayTeam": { "id": 59, "name": "Blackburn Rovers FC" },
+    "referees": [
+      { "id": 11317, "name": "Darren Bond", "nationality": null },
+      { "id": 11388, "name": "Mark Pottage", "nationality": null },
+      { "id": 11288, "name": "Mark Russell", "nationality": null },
+      { "id": 14713, "name": "Oliver Yates", "nationality": null }
+    ]
+  }
+]

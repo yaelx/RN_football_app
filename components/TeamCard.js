@@ -18,11 +18,10 @@ import {
   getRelativeWidth,
   getRelativeDimens,
 } from "../theme/index";
-import { isValidUrl, getTeam } from "../utils/utils";
+import { isValidUrl, getTeam, getTeamMatches } from "../utils/utils";
 import ScaledText from "./ScaledText";
 import { TrackingTouchableOpacity } from "./TrackingTouchableOpacity";
 import { footballIcon, userIcon } from "../utils/iconGetters";
-
 
 export default class TeamCard extends Component {
   constructor(props) {
@@ -77,14 +76,32 @@ export default class TeamCard extends Component {
   async showTeam() {
     console.log(`show team: ${this.props.team.id} ${this.props.team.name}`);
     //if (!this.state.team) {
-      const fullTeam = await getTeam(this.props.team.id);
-      
-      if (fullTeam) {
-        console.log("got team");
-        this.props.showTeamDetails(fullTeam);
-        this.setState({ team: fullTeam });
-    //  }
+
+    Promise.all([
+      getTeam(this.props.team.id),
+      getTeamMatches(this.props.team.id),
+    ])
+      .then((results) => {
+        console.log(JSON.stringify(results[1]));
+      })
+      .catch((error) => {
+        // react on errors.
+        console.error(error);
+        console.log(`getTeams error: ${error}`);
+      });
+
+    /*
+    const fullTeam = await getTeam(this.props.team.id);
+    const matches = await getTeamMatches(this.props.team.id);
+    console.log(matches);
+
+    if (matches) {
+      console.log("got team and matches");
+      console.log(matches);
+      //this.props.showTeamDetails({ ...fullTeam });
+      //this.setState({ team: fullTeam });
     }
+    */
   }
 
   renderHeader = () => (
@@ -121,78 +138,10 @@ export default class TeamCard extends Component {
     </TrackingTouchableOpacity>
   );
 
-  renderPlayer = ({ item, index }) => (
-    <View style={[AppStyles.top_center_col, { width: getRelativeWidth(100) }]}>
-      <View style={AppStyles.top_center_col}>
-        <View style={[AppStyles.left_center_row]}>{userIcon(26)}</View>
-      </View>
-      <View
-        style={[
-          AppStyles.center_align_row,
-          { width: "100%", paddingVertical: getRelativeHeight(2) },
-        ]}
-      >
-        <View style={[AppStyles.center_align_row, { width: "100%" }]}>
-          <ScaledText text={item.name} style={styles.playerNameText} />
-        </View>
-      </View>
-      <View
-        style={[
-          AppStyles.center_align_row,
-          { width: "100%", paddingVertical: getRelativeHeight(2) },
-        ]}
-      >
-        <ScaledText text={item.position} style={styles.playerPositionText} />
-      </View>
-    </View>
-  );
-
-  renderPlayersList = (squad) =>
-    squad.length && (
-      <View
-        style={[
-          {
-            ...AppStyles.top_center_col,
-            width: "100%",
-            ...AppStyles.borderHelper,
-          },
-        ]}
-      >
-        <View style={[AppStyles.left_center_row]}>
-          <ScaledText text={"Players"} style={[styles.playersHeaderText]} />
-        </View>
-
-        <View style={[{ ...AppStyles.center_align_row, width: "100%" }]}>
-          <FlatList
-            keyExtractor={(item) => `${item.id}`}
-            horizontal={true}
-            data={squad}
-            renderItem={(item) => this.renderPlayer(item)}
-            showsHorizontalScrollIndicator={true}
-            removeClippedSubviews={true}
-            style={[AppStyles.listContainer]}
-            contentContainerStyle={{
-              ...AppStyles.left_center_row,
-              //width: "100%",
-              height: getRelativeHeight(80),
-              marginTop: getRelativeHeight(1),
-            }}
-            onEndReachedThreshold={0.5}
-            initialNumToRender={4}
-          />
-        </View>
-      </View>
-    );
-
   render = () => (
     <View onLayout={this.onLayout.bind(this)} style={[styles.cardLayout]}>
       <View style={[styles.cardBody]}>
-        <View style={[styles.cardContentFrame]}>
-          {this.renderHeader()}
-          {this.state.showMore &&
-            this.state.team &&
-            this.renderPlayersList(this.state.team.squad)}
-        </View>
+        <View style={[styles.cardContentFrame]}>{this.renderHeader()}</View>
       </View>
     </View>
   );

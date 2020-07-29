@@ -116,6 +116,26 @@ export async function getTeamRequests(competitions) {
   return requests;
 }
 
+export async function getTeamMatches(team_id) {
+    return axios.get(`http://api.football-data.org/v2/teams/${team_id}/matches/?limit=10`, {
+      headers: {
+        "X-Auth-Token": FOOTBALL_KEY,
+        dataType: "json"
+      }
+    })
+      .then((response) => {
+        if (response.data.matches) {
+          return response.data.matches;
+        }
+        return null;
+      })
+      .catch((error) => {
+        console.log(`getTeamMatches for team: ${team_id} error: ${error}`);
+        return null;
+      });
+}
+
+
 
 const message = {
   msgContainer: {

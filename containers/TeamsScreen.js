@@ -175,16 +175,13 @@ export default class TeamsScreen extends Component {
   );
 
   // !!this.state.team
-  render = () => {
-    console.log(!!this.state.team);
-    return(
+  render = () => (
     <View style={[styles.container]}>
     {!!this.state.team && this.renderTeamDetails()}
     {this.renderHeader()}
     {this.renderTeamsList()}
     </View>
   );
-    }
 }
 
 const styles = StyleSheet.create({
