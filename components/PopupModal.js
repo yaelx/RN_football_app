@@ -20,7 +20,7 @@ import {
 import ScaledText from "./ScaledText";
 import CloseModalButton from "./CloseModalButton";
 const popupButtonWidth = AppSizes.relativePopupButton.width;
-import { footballIcon, userIcon } from "../utils/iconGetters";
+import { footballIcon, userIcon, arrowsIcon } from "../utils/iconGetters";
 
 export default class PopupModal extends Component {
   static propTypes = {
@@ -168,7 +168,7 @@ export default class PopupModal extends Component {
   );
 
   renderPlayer = ({ item, index }) => (
-    <View style={[AppStyles.top_center_col, { width: getRelativeWidth(100) }]}>
+    <View style={[AppStyles.top_center_col, { width: getRelativeWidth(100), ...AppStyles.elevatedSmall }]}>
       <View style={AppStyles.top_center_col}>
         <View style={[AppStyles.left_center_row]}>{userIcon(26)}</View>
       </View>
@@ -193,6 +193,41 @@ export default class PopupModal extends Component {
     </View>
   );
 
+  renderMatch = ({ item, index }) => (
+    <View style={[AppStyles.top_center_col, { width: getRelativeWidth(120), paddingHorizontal: getRelativeWidth(2) }]}>
+      <View style={[AppStyles.center_align_row, { width: "100%" }]}>
+        {!!item.competition && <ScaledText text={item.competition} style={styles.playerNameText} />}
+      </View>
+      <View
+        style={[
+          AppStyles.center_align_row,
+          { width: "100%", paddingVertical: getRelativeHeight(2) },
+        ]}
+      >
+        {!!item.date && <ScaledText text={item.date} style={styles.playerPositionText} />}
+      </View>
+
+      <View
+        style={[
+          AppStyles.center_align_row, {marginTop: getRelativeHeight(8), width: "100%", paddingVertical: getRelativeHeight(2) },
+        ]}
+      >
+        <View style={[AppStyles.center_align_row, { width: "100%" }]}>
+          {!!item.rivalTeam && <ScaledText text={item.rivalTeam} style={styles.playerPositionText} />}
+        </View>
+      </View>
+      <View style={[AppStyles.center_align_row]}>{arrowsIcon()}</View>
+      <View
+        style={[
+          AppStyles.center_align_row,
+          { width: "100%", paddingVertical: getRelativeHeight(2) },
+        ]}
+      >
+        <ScaledText text={item.awayTeam} style={styles.playerPositionText} />
+      </View>
+    </View>
+  );
+
   renderPlayersList = (squad) =>
     squad.length && (
       <View
@@ -200,7 +235,6 @@ export default class PopupModal extends Component {
           {
             ...AppStyles.top_center_col,
             width: "100%",
-            ...AppStyles.borderHelper,
           },
         ]}
       >
@@ -229,16 +263,42 @@ export default class PopupModal extends Component {
       </View>
     );
 
-  /**
-       #A list of 10 (or fewer) upcoming matches for the team. You should show the: 
-       name of the rival team, the date, and the competition (Champions League, Primera Division,
-  
-        get `/v2/teams/${team_id}/matches/?limit=10`
-        response.matches: for each match:
-        date: match.utcDate,
-        rival team: match.awayTeam.name
-        competition: match.competition.name
-       */
+  renderMatchesList = (matches) =>
+    matches.length && (
+      <View
+        style={[
+          {
+            ...AppStyles.top_center_col,
+            width: "100%",
+            marginTop: getRelativeHeight(10),
+          },
+        ]}
+      >
+        <View style={[AppStyles.left_center_row]}>
+          <ScaledText text={"Matches"} style={[styles.playersHeaderText]} />
+        </View>
+
+        <View style={[{ ...AppStyles.center_align_row, width: "100%" }]}>
+          <FlatList
+            keyExtractor={(item) => `${item.id}`}
+            horizontal={true}
+            data={matches}
+            renderItem={(item) => this.renderMatch(item)}
+            showsHorizontalScrollIndicator={true}
+            removeClippedSubviews={true}
+            style={[AppStyles.listContainer]}
+            contentContainerStyle={{
+              ...AppStyles.left_center_row,
+              height: getRelativeHeight(130),
+              marginTop: getRelativeHeight(1),
+            }}
+            onEndReachedThreshold={0.5}
+            initialNumToRender={4}
+          />
+        </View>
+      </View>
+    );
+
   renderTeam = (team) => (
     <View
       style={[
@@ -249,6 +309,7 @@ export default class PopupModal extends Component {
       {this.renderCloseButton()}
       {!!this.props.title && this.renderHeader()}
       {team && team.squad && this.renderPlayersList(team.squad)}
+      {team && team.matches && this.renderMatchesList(team.matches)}
     </View>
   );
 
@@ -268,14 +329,11 @@ export default class PopupModal extends Component {
   );
 }
 
-const BH = AppStyles.borderHelper;
 const containerSize = {
   width: AppSizes.DEVICE_WIDTH,
   height: AppSizes.DEVICE_HEIGHT,
 };
-const popupDimens = getRelativeDimens({ height: 300, width: 230 });
 const titleFlex = 0.15; // 0.27
-const noTitleFlex = 0.1;
 const buttonsFlex = 0.3; // 0.25
 const buttonsVerticalFlex = 0.38;
 const contentFlex = 1 - titleFlex - buttonsFlex;
@@ -300,15 +358,12 @@ const styles = StyleSheet.create({
     zIndex: 1000,
     borderRadius: 3,
     ...AppStyles.top_center_col,
-    //...AppSizes.relativePopup
-    ...containerSize
+    ...containerSize,
   },
   webViewDialogStyle: {
     backgroundColor: colors.white,
     alignSelf: "center",
     ...containerSize,
-    //width: AppSizes.DEVICE_WIDTH,
-    //height: popupDimens.height
   },
   dialogTitleFrame: {
     flex: titleFlex,
@@ -316,12 +371,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     ...AppStyles.center_col,
     marginTop: getRelativeHeight(20),
-    //...BH
   },
   titleInnerFrame: {
     ...AppStyles.top_center_col,
     width: "100%",
-    //...AppStyles.borderHelper
   },
   titleCloseButtonRow: {
     ...AppStyles.right_top_row,
@@ -336,7 +389,6 @@ const styles = StyleSheet.create({
     ...AppStyles.center_top_row,
     width: "90%",
     marginTop: getRelativeHeight(5),
-    //...AppStyles.borderHelper,
   },
   titleText: {
     ...AppStyles.h3,
@@ -349,13 +401,11 @@ const styles = StyleSheet.create({
     width: "100%",
     ...AppStyles.top_center_col,
     backgroundColor: colors.white,
-    //...AppStyles.borderHelper
   },
   dialogContentFrame: {
     width: "90%",
     ...AppStyles.top_center_col,
     paddingVertical: getRelativeHeight(5),
-    //...AppStyles.borderHelper
   },
   contentText: {
     ...AppStyles.h34,
@@ -368,16 +418,42 @@ const styles = StyleSheet.create({
     ...AppStyles.space_between_center_row,
     backgroundColor: colors.white,
     marginBottom: getRelativeHeight(10),
-    //...AppStyles.borderHelper
   },
   verticalButtonsFrame: {
     flex: buttonsVerticalFlex,
     ...AppStyles.space_around_center_col,
     backgroundColor: colors.white,
     marginBottom: getRelativeHeight(10),
-    //...AppStyles.borderHelper
   },
   webView: {
     flex: 1,
+  },
+  teamNameText: {
+    ...AppFonts.h3,
+    color: colors.darkGrey,
+    textAlign: "left",
+    letterSpacing: 0.08,
+    fontWeight: "bold",
+  },
+  playerNameText: {
+    ...AppFonts.h4,
+    color: colors.darkGrey,
+    textAlign: "center",
+    letterSpacing: 0.08,
+    fontWeight: "bold",
+  },
+  playerPositionText: {
+    ...AppFonts.h5,
+    color: colors.darkGrey,
+    textAlign: "center",
+    letterSpacing: 0.08,
+    color: colors.grey,
+  },
+  playersHeaderText: {
+    ...AppFonts.h4,
+    textAlign: "center",
+    letterSpacing: 0.08,
+    color: colors.red,
+    fontWeight: "bold",
   },
 });

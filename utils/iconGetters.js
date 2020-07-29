@@ -21,3 +21,9 @@ export function footballIcon(size = 26, color = colors.darkGrey) {
         <Icon name="close" type="font-awesome" size={size} color={color} containerStyle={{ padding: 2 }} />
       );
   }
+
+  export function arrowsIcon(size = 26, color = colors.red) {
+    return (
+        <Icon name="arrows-v" type="font-awesome" size={size} color={color} containerStyle={{ padding: 2 }} />
+      );
+  }

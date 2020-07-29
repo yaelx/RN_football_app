@@ -81,7 +81,6 @@ export async function getCompetitions() {
     },
   })
     .then((response) => {
-      //console.log(`Competitions length: ${response.data.count}`);
       if (response.data.competitions) {
         return response.data.competitions.map((item, index) => ({
           id: item.id,
@@ -116,6 +115,17 @@ export async function getTeamRequests(competitions) {
   return requests;
 }
 
+
+  /**
+   #A list of 10 (or fewer) upcoming matches for the team. You should show the: 
+    name of the rival team, the date, and the competition (Champions League, Primera Division,
+
+    get `/v2/teams/${team_id}/matches/?limit=10`
+    response.matches: for each match:
+    date: match.utcDate,
+    rival team: match.awayTeam.name
+    competition: match.competition.name
+       */
 export async function getTeamMatches(team_id) {
     return axios.get(`http://api.football-data.org/v2/teams/${team_id}/matches/?limit=10`, {
       headers: {
@@ -124,14 +134,25 @@ export async function getTeamMatches(team_id) {
       }
     })
       .then((response) => {
+        let matches = [];
         if (response.data.matches) {
-          return response.data.matches;
+          response.data.matches.forEach((match,index) =>{
+            matches = matches.concat({
+              id: match.id,
+              date: match.utcDate, 
+              rivalTeam: match.homeTeam.name, 
+              competition: match.competition.name, 
+              awayTeam: match.awayTeam.name
+            });
+          });
+          
+          return matches;
         }
-        return null;
+        return [];
       })
       .catch((error) => {
         console.log(`getTeamMatches for team: ${team_id} error: ${error}`);
-        return null;
+        return [];
       });
 }
 
