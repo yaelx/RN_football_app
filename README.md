@@ -20,10 +20,7 @@ Info was taken from https://www.football-data.org/.
 - Wait until the app is built and downloaded. Press "run again" to reload the app and splash screen.
 
 ## 📝 Notes
-
-- [Expo AppLoading docs](https://docs.expo.io/versions/latest/sdk/app-loading/)
-- [Expo Assets guide](https://docs.expo.io/versions/latest/guides/assets/)
-- [Expo Splash Screen guide](https://docs.expo.io/versions/latest/guides/splash-screens/)
+- Used the free plan on site which limit to 
 =======
 # RN_football_app
 >>>>>>> 4f42147957fe43a2829299090a8088f313834718
