@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Football teams Screen Example
 
 <p>
@@ -21,6 +20,4 @@ Info was taken from https://www.football-data.org/.
 
 ## 📝 Notes
 - Used the free plan on site which limit to 10 requests/minute.
-=======
-# RN_football_app
->>>>>>> 4f42147957fe43a2829299090a8088f313834718
+
