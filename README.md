@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# Animated Splash Screen Example
+# Football teams Screen Example
 
 <p>
   <!-- iOS -->
@@ -20,7 +20,7 @@ Info was taken from https://www.football-data.org/.
 - Wait until the app is built and downloaded. Press "run again" to reload the app and splash screen.
 
 ## 📝 Notes
-- Used the free plan on site which limit to 
+- Used the free plan on site which limit to 10 requests/minute.
 =======
 # RN_football_app
 >>>>>>> 4f42147957fe43a2829299090a8088f313834718
